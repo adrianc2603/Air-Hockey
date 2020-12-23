@@ -3,6 +3,9 @@ import time
 
 class ScreenManager:
 
+    """
+    Constructor
+    """
     def __init__(self, screen, white, player1, player2):
         self.screen = screen
         self.white = white
@@ -19,7 +22,7 @@ class ScreenManager:
     def display_start_menu(self):
         start_time = current_time = current_time = int(round(time.time()))
         
-        while start_time + 8 >= current_time:
+        while start_time + 8 >= current_time: ##====================================================================================================== 8
             self.screen.fill(self.white)
 
             # First to 5 text
@@ -83,7 +86,4 @@ class ScreenManager:
         rect = text.get_rect()
         rect.center = (x, y)
         self.screen.blit(text, rect)            
-
-
-
             

@@ -68,7 +68,6 @@ while running:
     # If game is won, display who wins game for 3 seconds and then restart game
     if player1.score == 5 or player2.score == 5:
         screen_manager.display_player_has_won()
-        player1.restart(20)
-        player2.restart(560)
+        player1.restart()
+        player2.restart()
         puck.reset()
-    
