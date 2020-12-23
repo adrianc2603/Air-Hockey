@@ -26,20 +26,24 @@ class ScreenManager:
             # First to 5 text
             first_to_5 = self.big_font.render("First to 5 goals wins", True, self.black, self.white)
             first_to_5_rect = first_to_5.get_rect()
-            first_to_5_rect.center = (250, 150)
+            first_to_5_rect.center = (250, 100)
             self.screen.blit(first_to_5, first_to_5_rect)
 
             # Player 1 controls
             p1_controls = self.small_font.render("Player 1 Controls: Move left: A. Move right: D", True, self.player1.colour, self.white)
-            self.display_text(p1_controls, 250, 250)
+            self.display_text(p1_controls, 250, 200)
 
             # Player 2 controls
             p2_controls = self.small_font.render("Player 2 Controls: Move left: LEFT ARROW. Move right: RIGHT ARROW", True, self.player2.colour, self.white)
-            self.display_text(p2_controls, 250, 350)
+            self.display_text(p2_controls, 250, 300)
+
+             # PAUSE instruction
+            pause = self.small_font.render("You can Press P to Pause During Gameplay", True, self.black, self.white)
+            self.display_text(pause, 250, 400)
 
             # Press Enter instruction
             press_enter = self.small_font.render("Press Enter/Return to Begin", True, self.black, self.white)
-            self.display_text(press_enter, 250, 450)
+            self.display_text(press_enter, 250, 500)
 
             pygame.display.update()
 
@@ -53,6 +57,32 @@ class ScreenManager:
             if keys[pygame.K_RETURN]:
                 return
 
+    """
+    Display the pause screen until the player presses Enter/Return
+    """
+    def display_paused(self):
+         while True:
+
+            # Display required text on screen
+            self.screen.fill(self.white)
+
+            msg = self.big_font.render("Paused", True, self.black, self.white)
+            self.display_text(msg, 250, 250)
+
+            small_msg = self.small_font.render("Press Enter/Return to Continue", True, self.black, self.white)
+            self.display_text(small_msg, 250, 350)
+            
+            pygame.display.update()
+
+            # Return from this method (and resume the game) if Enter/Return is pressed
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_RETURN]:
+                return
+
+            # Quit the program if the player has pressed exit
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    exit()                
 
     """
     Display which player has won on the screen for 3 seconds

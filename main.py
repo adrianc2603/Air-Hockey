@@ -25,8 +25,16 @@ screen_manager = screen_manager.ScreenManager(screen, white, player1, player2)
 screen_manager.display_start_menu()
 
 # =============================== MAIN GAMEPLAY ===============================
+
 running = True
 while running:
+
+    # Detect keys pressed
+    keys = pygame.key.get_pressed()
+    
+    # User presses pause
+    if keys[pygame.K_p]:
+        screen_manager.display_paused()
 
     # Set white screen
     screen.fill(white)
@@ -47,16 +55,14 @@ while running:
     # Move puck
     puck.move(player1, player2)
 
-    # Detect player movement
-    keys = pygame.key.get_pressed()
 
-    # Player 1
+    # Player 1 Moves
     if keys[pygame.K_a]:
         player1.move_left() 
     if keys[pygame.K_d]:
         player1.move_right() 
 
-    # Player 2
+    # Player 2 Moves 
     if keys[pygame.K_LEFT]:
         player2.move_left() 
     if keys[pygame.K_RIGHT]:
