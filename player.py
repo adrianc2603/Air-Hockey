@@ -50,7 +50,8 @@ class Player:
     Draw the player on the screen
     """
     def draw(self):
-        pygame.draw.rect(self.screen, self.colour, (self.x, self.y, self.width, self.height))
+        pygame.draw.rect(self.screen, self.colour, (self.x, self.y, self.width,
+            self.height))
 
     """
     Update the position of the player's rectangle

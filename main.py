@@ -29,7 +29,7 @@ screen_manager.display_start_menu()
 running = True
 while running:
 
-    # Detect keys pressed
+    # Get keys pressed
     keys = pygame.key.get_pressed()
     
     # User presses pause
@@ -38,11 +38,6 @@ while running:
 
     # Set white screen
     screen.fill(white)
-
-    # Quit game
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
 
     # Display scores
     screen_manager.display_scores()
@@ -76,3 +71,8 @@ while running:
         player1.restart()
         player2.restart()
         puck.reset()
+
+    # Quit game
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False    

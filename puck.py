@@ -9,6 +9,7 @@ class Puck:
         self.x = 250
         self.y = 300
         self.radius = 20
+        self.diameter = 40
         self.colour = (0, 0, 0) # Black
         self.x_speed = 0
         self.y_speed = 6
@@ -29,13 +30,15 @@ class Puck:
     Draw the rectangle on the screen
     """
     def draw(self):
-        pygame.draw.circle(self.screen, self.colour, [self.x, self.y], self.radius)
+        pygame.draw.circle(self.screen, self.colour, [self.x, self.y], 
+            self.radius)
 
     """
     Update the position of the puck's rectangle
     """
     def update_rectange(self):
-        self.rectangle = pygame.Rect(self.x - self.radius, self.y - self.radius, self.radius * 2, self.radius * 2)
+        self.rectangle = pygame.Rect(self.x - self.radius, self.y - 
+            self.radius, self.diameter, self.diameter)
 
     """
     Perform the functionality to move the puck and check if 

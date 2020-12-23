@@ -24,25 +24,32 @@ class ScreenManager:
             self.screen.fill(self.white)
 
             # First to 5 text
-            first_to_5 = self.big_font.render("First to 5 goals wins", True, self.black, self.white)
+            first_to_5 = self.big_font.render("First to 5 goals wins", True, 
+                self.black, self.white)
             first_to_5_rect = first_to_5.get_rect()
             first_to_5_rect.center = (250, 100)
             self.screen.blit(first_to_5, first_to_5_rect)
 
             # Player 1 controls
-            p1_controls = self.small_font.render("Player 1 Controls: Move left: A. Move right: D", True, self.player1.colour, self.white)
+            p1_controls = self.small_font.render("Player 1 Controls: "
+                + "Move left: A. Move right: D", True, self.player1.colour, 
+                    self.white)
             self.display_text(p1_controls, 250, 200)
 
             # Player 2 controls
-            p2_controls = self.small_font.render("Player 2 Controls: Move left: LEFT ARROW. Move right: RIGHT ARROW", True, self.player2.colour, self.white)
+            p2_controls = self.small_font.render("Player 2 Controls: "
+                + "Move left: LEFT ARROW. Move right: RIGHT ARROW", True, 
+                    self.player2.colour, self.white)
             self.display_text(p2_controls, 250, 300)
 
-             # PAUSE instruction
-            pause = self.small_font.render("You can Press P to Pause During Gameplay", True, self.black, self.white)
+            # Pause instruction
+            pause = self.small_font.render("You can Press P to Pause During "
+                + "Gameplay", True, self.black, self.white)
             self.display_text(pause, 250, 400)
 
             # Press Enter instruction
-            press_enter = self.small_font.render("Press Enter/Return to Begin", True, self.black, self.white)
+            press_enter = self.small_font.render("Press Enter/Return to Begin",
+                True, self.black, self.white)
             self.display_text(press_enter, 250, 500)
 
             pygame.display.update()
@@ -69,12 +76,14 @@ class ScreenManager:
             msg = self.big_font.render("Paused", True, self.black, self.white)
             self.display_text(msg, 250, 250)
 
-            small_msg = self.small_font.render("Press Enter/Return to Continue", True, self.black, self.white)
+            small_msg = self.small_font.render("Press Enter/Return to "
+                + "Continue", True, self.black, self.white)
             self.display_text(small_msg, 250, 350)
             
             pygame.display.update()
 
-            # Return from this method (and resume the game) if Enter/Return is pressed
+            # Return from this method (and resume the game) if 
+            # Enter/Return is pressed
             keys = pygame.key.get_pressed()
             if keys[pygame.K_RETURN]:
                 return
@@ -95,12 +104,14 @@ class ScreenManager:
 
             # Player 1 wins
             if self.player1.score == 5:
-                p1_win = self.big_font.render("Player 1 Wins", True, self.player1.colour, self.white)
+                p1_win = self.big_font.render("Player 1 Wins", True, 
+                    self.player1.colour, self.white)
                 self.display_text(p1_win, 250, 300)
 
             # Player 2 wins
             if self.player2.score == 5:
-                p2_win = self.big_font.render("Player 2 Wins", True, self.player2.colour, self.white)
+                p2_win = self.big_font.render("Player 2 Wins", True, 
+                    self.player2.colour, self.white)
                 self.display_text(p2_win, 250, 300)
 
             current_time = int(round(time.time()))
@@ -110,9 +121,11 @@ class ScreenManager:
     Display the score of each player on the screen
     """
     def display_scores(self):
-        p1_score = self.big_font.render(str(self.player1.score), True, self.grey, self.white)
+        p1_score = self.big_font.render(str(self.player1.score), True, 
+            self.grey, self.white)
         self.display_text(p1_score, 450, 100)
-        p2_score = self.big_font.render(str(self.player2.score), True, self.grey, self.white)
+        p2_score = self.big_font.render(str(self.player2.score), True, 
+            self.grey, self.white)
         self.display_text(p2_score, 450, 500)    
 
     """
