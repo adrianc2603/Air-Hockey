@@ -6,7 +6,7 @@ class Puck:
         self.x = x
         self.y = y
         self.radius = radius 
-        self.colour = (0, 0, 0)
+        self.colour = (0, 0, 0) # Black
         self.x_speed = 0
         self.y_speed = 6
 
