@@ -47,8 +47,8 @@ class Puck:
     def move(self):
         self.x += self.x_speed
         self.y += self.y_speed
-
         self.update_rectange()
+        
         self.collision_with_borders()
         self.collision_with_player()
 

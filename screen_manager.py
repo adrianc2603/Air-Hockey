@@ -71,8 +71,6 @@ class ScreenManager:
          while True:
 
             # Display required text on screen
-            self.screen.fill(self.white)
-
             msg = self.big_font.render("Paused", True, self.black, self.white)
             self.display_text(msg, 250, 250)
 
@@ -98,7 +96,6 @@ class ScreenManager:
     """
     def display_player_has_won(self):
         start_time = current_time = int(round(time.time()))
-
         while start_time + 3 >= current_time:
             self.display_scores()
 

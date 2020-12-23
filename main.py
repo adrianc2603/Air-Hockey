@@ -8,7 +8,7 @@ pygame.init()
 screen = pygame.display.set_mode((500, 600))
 pygame.display.set_caption("Air Hockey")
 
-# Colours
+# Initialise colours
 white = (255, 255, 255)
 red = (255, 0, 0)
 blue = (0, 0, 255)
@@ -29,15 +29,15 @@ screen_manager.display_start_menu()
 running = True
 while running:
 
+    # Set white screen
+    screen.fill(white)
+
     # Get keys pressed
     keys = pygame.key.get_pressed()
     
     # User presses pause
     if keys[pygame.K_p]:
         screen_manager.display_paused()
-
-    # Set white screen
-    screen.fill(white)
 
     # Display scores
     screen_manager.display_scores()
