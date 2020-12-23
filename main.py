@@ -14,9 +14,9 @@ red = (255, 0, 0)
 blue = (0, 0, 255)
 
 # Initialise players and puck
-player1 = player.Player(200, 20, 100, 20, red)
-player2 = player.Player(200, 560, 100, 20, blue)
-puck = puck.Puck(250, 300, 20)
+player1 = player.Player(20, red, screen)
+player2 = player.Player(560, blue, screen)
+puck = puck.Puck(screen, player1, player2)
 
 # Initialise screen manager
 screen_manager = screen_manager.ScreenManager(screen, white, player1, player2)
@@ -48,13 +48,12 @@ while running:
     screen_manager.display_scores()
 
     # Place players and puck on screen
-    player1.draw(screen)
-    player2.draw(screen)
-    puck.draw(screen)
+    player1.draw()
+    player2.draw()
+    puck.draw()
 
     # Move puck
-    puck.move(player1, player2)
-
+    puck.move()
 
     # Player 1 Moves
     if keys[pygame.K_a]:

@@ -5,14 +5,17 @@ class Puck:
     """
     Constructor
     """
-    def __init__(self, x, y, radius):
-        self.x = x
-        self.y = y
-        self.radius = radius 
+    def __init__(self, screen, player1, player2):
+        self.x = 250
+        self.y = 300
+        self.radius = 20
         self.colour = (0, 0, 0) # Black
         self.x_speed = 0
         self.y_speed = 6
-        self.rectangle = pygame.Rect(x - radius, y - radius, radius * 2, radius * 2)
+        self.update_rectange()
+        self.screen = screen
+        self.player1 = player1
+        self.player2 = player2
 
     """
     Reset the puck to its original position
@@ -25,8 +28,8 @@ class Puck:
     """
     Draw the rectangle on the screen
     """
-    def draw(self, screen):
-        pygame.draw.circle(screen, self.colour, [self.x, self.y], self.radius)
+    def draw(self):
+        pygame.draw.circle(self.screen, self.colour, [self.x, self.y], self.radius)
 
     """
     Update the position of the puck's rectangle
@@ -38,17 +41,17 @@ class Puck:
     Perform the functionality to move the puck and check if 
     it collides with anything
     """
-    def move(self, player1, player2):
+    def move(self):
         self.x += self.x_speed
         self.y += self.y_speed
 
         self.update_rectange()
         self.collision_with_borders()
-        self.collision_with_player(player1, player2)
+        self.collision_with_player()
 
-        if self.goal_scored(player1, player2):
-            player1.reset()
-            player2.reset()
+        if self.goal_scored():
+            self.player1.reset()
+            self.player2.reset()
             self.reset()
 
     """
@@ -68,11 +71,11 @@ class Puck:
     """
     Change the direction of the puck if it collides with a player
     """
-    def collision_with_player(self, player1, player2):
+    def collision_with_player(self):
         keys = pygame.key.get_pressed()
         
         # Player 1
-        if self.rectangle.colliderect(player1.rectangle):
+        if self.rectangle.colliderect(self.player1.rectangle):
 
             # Change x-direction depending on which direction player is moving
             if keys[pygame.K_a]:
@@ -83,7 +86,7 @@ class Puck:
             self.y_speed *= -1    
 
         # Player 2
-        if self.rectangle.colliderect(player2.rectangle):
+        if self.rectangle.colliderect(self.player2.rectangle):
 
             # Change x-direction depending on which direction player is moving
             if keys[pygame.K_LEFT]:
@@ -97,16 +100,16 @@ class Puck:
     If a player scores a goal, increase their score and return True.
     Return False otherwise
     """
-    def goal_scored(self, player1, player2):
+    def goal_scored(self):
 
         # Player 1 scores a point
         if (self.y + self.radius) >= 600:
-            player1.score += 1
+            self.player1.score += 1
             return True
 
         # Player 2 scores a point
         if (self.y - self.radius) <= 0:
-            player2.score += 1
+            self.player2.score += 1
             return True
 
         return False                       

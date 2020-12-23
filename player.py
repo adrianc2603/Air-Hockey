@@ -5,15 +5,16 @@ class Player:
     """
     Constructor
     """
-    def __init__(self, x, y, width, height, colour):
-        self.x = x
+    def __init__(self, y, colour, screen):
+        self.x = 200
         self.y = y
-        self.width = width
-        self.height = height
+        self.width = 100
+        self.height = 20
         self.velocity = 3
         self.colour = colour
         self.score = 0
-        self.rectangle = pygame.Rect(x, y, width, height)
+        self.update_rectangle()
+        self.screen = screen
 
     """
     Reset the player to its original position
@@ -48,8 +49,8 @@ class Player:
     """
     Draw the player on the screen
     """
-    def draw(self, screen):
-        pygame.draw.rect(screen, self.colour, (self.x, self.y, self.width, self.height))
+    def draw(self):
+        pygame.draw.rect(self.screen, self.colour, (self.x, self.y, self.width, self.height))
 
     """
     Update the position of the player's rectangle
