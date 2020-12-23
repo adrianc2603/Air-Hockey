@@ -17,12 +17,10 @@ class ScreenManager:
         self.small_font = pygame.font.Font('freesansbold.ttf', 14)
 
     """
-    Display the start menu on the screen for 8 seconds
+    Display the start menu on the screen until Enter/Return is pressed
     """
     def display_start_menu(self):
-        start_time = current_time = current_time = int(round(time.time()))
-        
-        while start_time + 8 >= current_time: ##====================================================================================================== 8
+        while True:
             self.screen.fill(self.white)
 
             # First to 5 text
@@ -33,19 +31,27 @@ class ScreenManager:
 
             # Player 1 controls
             p1_controls = self.small_font.render("Player 1 Controls: Move left: A. Move right: D", True, self.player1.colour, self.white)
-            self.display_text(p1_controls, 250, 300)
+            self.display_text(p1_controls, 250, 250)
 
             # Player 2 controls
             p2_controls = self.small_font.render("Player 2 Controls: Move left: LEFT ARROW. Move right: RIGHT ARROW", True, self.player2.colour, self.white)
-            self.display_text(p2_controls, 250, 450)
+            self.display_text(p2_controls, 250, 350)
+
+            # Press Enter instruction
+            press_enter = self.small_font.render("Press Enter/Return to Begin", True, self.black, self.white)
+            self.display_text(press_enter, 250, 450)
+
+            pygame.display.update()
 
             # Exit program if player presses exit
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     exit()
 
-            current_time = int(round(time.time()))
-            pygame.display.update()
+            # Exit the method (and start game) if Enter/Return is pressed
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_RETURN]:
+                return
 
 
     """

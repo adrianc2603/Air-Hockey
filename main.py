@@ -21,7 +21,7 @@ puck = puck.Puck(250, 300, 20)
 # Initialise screen manager
 screen_manager = screen_manager.ScreenManager(screen, white, player1, player2)
 
-# Display the start menu for 8 seconds
+# Display the start menu 
 screen_manager.display_start_menu()
 
 # =============================== MAIN GAMEPLAY ===============================
