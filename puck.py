@@ -17,6 +17,7 @@ class Puck:
         self.screen = screen
         self.player1 = player1
         self.player2 = player2
+        self.collision_with_player_flag = False
 
     """
     Reset the puck to its original position
@@ -52,6 +53,10 @@ class Puck:
         self.collision_with_borders()
         self.collision_with_player()
 
+        # Reset collision with player flag when puck is in middle of screen
+        if abs(self.y - 300) <= 6:
+            self.collision_with_player_flag = False
+
         if self.goal_scored():
             self.player1.reset()
             self.player2.reset()
@@ -69,12 +74,17 @@ class Puck:
                     self.y_speed = -5
                 else:
                     self.y_speed = 5
-
     
     """
     Change the direction of the puck if it collides with a player
     """
     def collision_with_player(self):
+
+        # Puck can only collide with a player once at a time (same play can't 
+        # collide with puck twice in a row) 
+        if self.collision_with_player_flag: 
+            return
+
         keys = pygame.key.get_pressed()
         
         # Player 1
@@ -86,7 +96,8 @@ class Puck:
             if keys[pygame.K_d]:
                 self.x_speed = 2   
 
-            self.y_speed *= -1    
+            self.y_speed *= -1   
+            self.collision_with_player_flag = True 
 
         # Player 2
         if self.rectangle.colliderect(self.player2.rectangle):
@@ -98,6 +109,7 @@ class Puck:
                 self.x_speed = 2 
 
             self.y_speed *= -1 
+            self.collision_with_player_flag = True 
 
     """
     If a player scores a goal, increase their score and return True.
