@@ -27,7 +27,7 @@ class Puck:
         self.x_speed = 0
 
     """
-    Draw the rectangle on the screen
+    Draw the puck on the screen
     """
     def draw(self):
         pygame.draw.circle(self.screen, self.colour, [self.x, self.y], 
@@ -42,7 +42,7 @@ class Puck:
 
     """
     Perform the functionality to move the puck and check if 
-    it collides with anything
+    it collides with anything or goes into a goal
     """
     def move(self):
         self.x += self.x_speed
