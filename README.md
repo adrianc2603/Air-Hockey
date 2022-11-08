@@ -24,3 +24,12 @@ UNPAUSE: Enter/Return
 
 ### Play on Your Machine 
 Make sure your machine is running python3 (I used python 3.8) and pygame (I used pygame 2.0.0). Then run into the command line 'python3 main.py'.
+
+1. Install pygame:
+
+       pip3 install pygame
+
+2. Run the game:
+
+       python3 main.py
+  
